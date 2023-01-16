@@ -1,15 +1,11 @@
 resource "aws_vpc" "vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block    = "10.0.0.0/16"
 
   tags = {
     Name = "my-vpc"
   }
 }
 
-resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.subnet.id
-  route_table_id = aws_route_table.rt.id
-}
 
 resource "aws_subnet" "subnet" {
   vpc_id = aws_vpc.vpc.id
@@ -52,3 +48,7 @@ resource "aws_route_table" "rt" {
 
 }
 
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.subnet.id
+  route_table_id = aws_route_table.rt.id
+}

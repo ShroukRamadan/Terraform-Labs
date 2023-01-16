@@ -1,6 +1,8 @@
 resource "aws_security_group" "sg" {
   name        = "http&&ssh_sg"
   description = "allow ssh on 22 & http on port 80"
+  vpc_id = aws_vpc.vpc.id
+
 
   ingress {
     from_port        = 22
