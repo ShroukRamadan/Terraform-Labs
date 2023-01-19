@@ -4,6 +4,7 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name = "my-vpc"
   }
+  
 }
 
 
