@@ -30,7 +30,6 @@ resource "aws_instance" "pub-instance" {
   }
 }
 
-
 resource "aws_instance" "private-instance" {
   ami   = data.aws_ami.ubuntu.id
   instance_type = var.instace-type

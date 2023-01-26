@@ -1,5 +1,3 @@
-
-
 variable "vpc-cidr" {
     description = "this variable is cider for vpc"
     type = string   
