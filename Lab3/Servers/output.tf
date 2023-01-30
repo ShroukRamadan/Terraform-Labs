@@ -1,23 +1,28 @@
-output "pub-instance_id" {
-  value =toset(aws_instance.pub-instance.id)
+output "pub-instances-ids" {
+  value =aws_instance.pub-instance
 }
 
-output "private-instance-id" {
-  value =toset(aws_instance.private-instance.id)
+output "private-instances-ids" {
+  value =aws_instance.private-instance
 }
 
 output "pub-instace-pub-ip" {
-    value =toset(aws_instance.pub-instance.public_ip)
+    value =aws_instance.pub-instance.public_ip
 }
 
 output "pub-instance-private-ip" {
-      value =toset(aws_instance.private-instance.private_ip)
+      value =aws_instance.private-instance.private_ip
 
 }
 
 output "private-instance-private-ip" {
-      value =toset(aws_instance.private-instance.private_ip)
+      value =aws_instance.private-instance.private_ip
 
+}
+
+output "instace-sg-id" {
+  
+  value = aws_security_group.instace-sg.id
 }
 
 

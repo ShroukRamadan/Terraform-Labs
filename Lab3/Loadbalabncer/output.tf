@@ -1,9 +1,12 @@
-
 output "pub-tg-arn" {
-    value=aws_lb_target_group.tg-attach-instance.arn
+    value=aws_lb_target_group.pub-tg.arn
   
 }
 
+output "private-tg-arn" {
+    value=aws_lb_target_group.private-tg.arn
+
+}
 output "pub-lb-arn" {
     value=aws_lb.pub-alb.arn
  
@@ -17,5 +20,5 @@ output "private-lb-arn" {
 
 
 output "private-dns-lb" {
-  value = "https://${aws_alb.private-lb.dns_name}"
+  value = aws_alb.private-lb.dns_name
 }

@@ -35,28 +35,31 @@ module "servers" {
 
   source = "./Servers" 
   ami  = data.aws_ami.ubuntu.id
-  instace-type = "t2.micro" 
+  instace-type = "t2.micro"
+  count = length(module.networking.pub-subnets-ids) 
   pub-instance-tag-name = ["proxy-1","proxy-2"]
   private-instance-tag-name = ["private-ec2-1","private-ec2-2"]
   key-name = "iti-ssh"
   vpc-id = module.networking.vpc-id
-  pub-subnets = module.networking.pub-subnet.pub-subnets-ids
-  private-subnets = module.networking.pub-subnet.private-subnets-ids
+  pub-subnets = module.networking.pub-subnet.pub-subnets-ids[count.index]
+  private-subnets = module.networking.pub-subnet.private-subnets-ids[count.index]
+
+  private-lb-dns=module.lb.private-dns-lb
 
  
 }
 
-# module "lb" { 
+module "lb" { 
   
-#   source = "./Loadbalabncer"
-#   lb-tag-name = ["pub-Alb","private-Alb"]
-#   lb-type = "Application"
-#   internal = ["false","true"]
+  source = "./Loadbalabncer"
+  lb-tag-name = ["pub-Alb","private-Alb"]
+  lb-type = "Application"
+  internal = ["false","true"]
+  vpc-id=module.networking.vpc-id
+  pub-subnets=module.networking.pub-subnets-ids
+  private-subnets=module.networking.private-subnets-ids
   
-#   pub-subnet-alb=module.networking.pub-subnet
-#   private-subnet-alb=module.networking.private-subnet
+  pub-instance-id=module.servers.pub-instaces-ids
+  private-instance-id=module.servers.private-instaces-ids
 
-#   pub-instance-id=module.servers.pub-instace
-#   private-instance-id=module.servers.private-instace
-
-# }
+}

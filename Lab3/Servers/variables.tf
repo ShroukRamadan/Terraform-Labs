@@ -21,6 +21,7 @@ variable "private-instance-tag-name" {
   
 }
 
+
 variable "pub-subnets" {
   
 }
@@ -30,5 +31,9 @@ variable "private-subnets" {
 }
 
 variable "vpc-id" {
+  
+}
+
+variable "instace-sg" {
   
 }

@@ -35,9 +35,9 @@ resource "aws_security_group" "instace-sg" {
 # resource "aws_security_group" "private-sg" {
 #   name        = "private-sg"
 #   description = "allow http only"
-#   vpc_id = aws_vpc.vpc.id
+#   vpc_id = var.vpc-id
 
-
+  
 #   egress {
 #     from_port        = 0
 #     to_port          = 0
